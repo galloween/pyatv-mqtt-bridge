@@ -109,7 +109,7 @@ export default class PyAtvMqttBridge {
                 });
 
                 if (this.mqttClient) {
-                    this.mqttClient.publish(device.topic + '/' + event.key, (event['values'].new||event['values'].old) as any, {retain: true});
+                    this.mqttClient.publish(device.topic + '/' + event.key, String(event.value||event.oldValue), {retain: true});
                 }
             }
         };
