@@ -109,8 +109,7 @@ export default class PyAtvMqttBridge {
                 });
 
                 if (this.mqttClient) {
-                    const value = event.value === null ? '' : String(event.value);
-                    this.mqttClient.publish(device.topic + '/' + event.key, value, {retain: true});
+                    this.mqttClient.publish(device.topic + '/' + event.key, (event.values.new||event.values.old), {retain: true});
                 }
             }
         };
